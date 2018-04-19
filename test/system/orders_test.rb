@@ -9,7 +9,15 @@
 require "application_system_test_case"
 
 class OrdersTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
+
   test "check routing number" do
+    #Clear out any orders in the test database
+    LineItem.delete_all
+    Order.delete_all
+
+    visit store_index_url
+
     visit store_index_url
 
     first('.catalog li').click_on 'Add to Cart'
@@ -24,6 +32,34 @@ class OrdersTest < ApplicationSystemTestCase
 
     select 'Check', from: 'pay_type'
 
+    #Check the content of pay type details
     assert_selector "#order_routing_number"
+
+    fill_in "Routing #", with: "123456"
+    fill_in "Account #", with: "987654"
+
+    #Check "Place Order" button is pressed
+    perform_enqueued_jobs do
+      click_button "Place Order"
+    end
+
+    #Check order was created
+    orders = Order.all
+    assert_equal 1, orders.size
+
+    order = orders.first
+
+    assert_equal "Dave Thomas",      order.name
+    assert_equal "123 Main Street",  order.address
+    assert_equal "dave@example.com", order.email
+    assert_equal "Check",            order.pay_type
+    assert_equal 1, order.line_items.size
+
+    #Check mail was sent
+    mail = ActionMailer::Base.deliveries.last
+    assert_equal ["dave@example.com"],                 mail.to
+    assert_equal 'Sam Ruby <depot@example.com>',       mail[:from].value
+    assert_equal "Pragmatic Store Order Confirmation", mail.subject
+
   end
 end
