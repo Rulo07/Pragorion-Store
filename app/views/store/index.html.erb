@@ -2,7 +2,7 @@
   <aside id="notice"><%= notice %></aside>
 <% end %>
 
-<h1>Your Pragorion Catalog | Date: <%= @time.strftime("%d of %B %H:%M:%S")  %></h1>
+<h1>Your Pragorion Catalog | Date: <%= Time.now.strftime("%d of %B %H:%M:%S")  %></h1>
 <ul class="catalog">
   <% cache @products do %>
     <% @products.each do |product| %>
