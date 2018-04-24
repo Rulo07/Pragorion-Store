@@ -33,6 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'webpacker', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Use to provide an object called i18n that allows us to access to our translations as a JavaScript object
+gem 'i18n-js'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

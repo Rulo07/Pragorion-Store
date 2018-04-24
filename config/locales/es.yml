@@ -1,0 +1,73 @@
+es:
+  thanks:        "Gracias por su pedido"
+  
+  layouts:
+    application:
+      title:     "Biblioteca de Pragorion"
+      home:      "Inicio"
+      questions: "Preguntas"
+      news:      "Noticias"
+      contact:   "Contacto"
+
+  store:
+    index:
+      title_html: "Su cat&aacute;logo de Pragorion"
+      add_html: "A&ntilde;adir al Carrito"
+
+  carts:
+    cart:
+      title:    "Carrito de la compra"
+      empty:    "Vaciar carrito"
+      checkout: "Comprar"
+
+  number:
+    currency:
+      format:
+        unit:      "$US"
+        precision: 2
+        separator: ","
+        delimiter: "."
+        format:    "%n&nbsp;%u"
+
+  orders:
+    new:
+      legend: "Por favor, introduzca sus datos"
+    form:
+      name:         "Nombre"
+      address_html: "Direcci&oacute;n"
+      email:        "E-mail"
+      pay_type:     "Forma de pago"
+      pay_prompt_html: "Seleccione un método de pago"
+      submit:       "Realizar pedido"
+      pay_types:
+        check:          "Cheque"
+        credit_card:    "Tarjeta de crédito"
+        purchase_order: "Orden de compra"
+      check_pay_type:
+        routing_number: "# de Enrutamiento"
+        account_number: "# de Cuenta"
+      credit_card_pay_type:
+        cc_number:       "Número de la tarjeta"
+        expiration_date: "Expiración de la tarjeta"
+      purchase_order_pay_type:
+        po_number: "Número de cuenta"
+
+  activerecord:
+    models:
+      order:       "pedido"
+    attributes:
+      order:
+        address:   "Direcci&oacute;n"
+        name:      "Nombre"
+        email:     "Email"
+        pay_type:  "Forma de pago"
+    errors:
+      messages:
+        inclusion: "no est&aacute; incluido en la lista"
+        blank:     "no puede quedar en blanco"
+  errors:
+    template:
+      body:      "Hay problemas con los siguientes campos:"
+      header:
+        one:     "1 error ha impedido que este %{model} se guarde"
+        other:   "%{count} errores han impedido que este %{model} se guarde"
